@@ -20,22 +20,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd1b2b99-74f9-478f-a0be-953cf611cd89" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/anonymous.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codesize.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first.php" beforeDir="false" afterPath="$PROJECT_DIR$/first.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/symfony/dependency-injection" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/phpstan" />
+      <path value="$PROJECT_DIR$/vendor/squizlabs/php_codesniffer" />
+      <path value="$PROJECT_DIR$/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/vendor/phpmd/phpmd" />
+      <path value="$PROJECT_DIR$/vendor/pdepend/pdepend" />
+    </include_path>
   </component>
   <component name="ProjectId" id="1hoO10tp89vfUVW4c88l98TTIqA" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -46,6 +62,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -63,7 +80,9 @@
       <workItem from="1600847372140" duration="5063000" />
       <workItem from="1600927811387" duration="2708000" />
       <workItem from="1600933053371" duration="744000" />
-      <workItem from="1601013948448" duration="551000" />
+      <workItem from="1601013948448" duration="2696000" />
+      <workItem from="1601367562355" duration="5409000" />
+      <workItem from="1601461515351" duration="209000" />
     </task>
     <servers />
   </component>
@@ -83,6 +102,18 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="579" y="211" width="824" height="691" key="#Mess_Detector" timestamp="1601379599347">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="579" y="211" width="824" height="691" key="#Mess_Detector/72.27.1848.1053@72.27.1848.1053" timestamp="1601379599347" />
+    <state x="579" y="211" width="824" height="691" key="#PHP_CodeSniffer" timestamp="1601379590508">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="579" y="211" width="824" height="691" key="#PHP_CodeSniffer/72.27.1848.1053@72.27.1848.1053" timestamp="1601379590508" />
+    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1601461466767">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1601461466767" />
     <state x="791" y="479" width="399" height="156" key="NewPhpFileDialog" timestamp="1600930837535">
       <screen x="72" y="29" width="1848" height="1051" />
     </state>
