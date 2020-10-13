@@ -192,7 +192,7 @@ class Affiliate
      *
      * @return self
      */
-    public function removeCategory(Category $category) : self
+    public function removecategory(Category $category) : self
     {
         $this->categories->removeElement($category);
 
