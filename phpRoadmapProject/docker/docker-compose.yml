@@ -5,7 +5,7 @@ services:
         container_name: phpRoadmapProject-mysql
         working_dir: /application
         volumes:
-            - ../api:/application
+            - ./../api:/application
         environment:
             - MYSQL_ROOT_PASSWORD=password
             - MYSQL_DATABASE=jobeet
@@ -19,7 +19,7 @@ services:
         container_name: phpRoadmapProject-webserver
         working_dir: /application
         volumes:
-            - ../api:/application
+            - ./../api:/application
             - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
         ports:
             - 8001:80
@@ -29,5 +29,5 @@ services:
         container_name: phpRoadmapProject-php-fpm
         working_dir: /application
         volumes:
-            - ../api:/application
+            - ./../api:/application
             - ./php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
