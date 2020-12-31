@@ -29,6 +29,15 @@ class Category
     private $name;
 
     /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     *
+     * @ORM\Column(type="string", length=128, unique=true)
+     */
+    private $slug;
+
+    /**
      * @var Job[]|ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Job", mappedBy="category")
@@ -41,15 +50,6 @@ class Category
      * @ORM\ManyToMany(targetEntity="Affiliate", mappedBy="categories")
      */
     private $affiliates;
-
-    /**
-     * @var string
-     *
-     * @Gedmo\Slug(fields={"name"})
-     *
-     * @ORM\Column(type="string", length=128, unique=true)
-     */
-    private $slug;
 
     public function __construct()
     {
@@ -83,6 +83,22 @@ class Category
         $this->name = $name;
 
         return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSlug() : ?string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug(string $slug): void
+    {
+        $this->slug = $slug;
     }
 
     /**
@@ -162,21 +178,4 @@ class Category
 
         return $this;
     }
-
-    /**
-     * @return string|null
-     */
-    public function getSlug() : ?string
-    {
-        return $this->slug;
-    }
-
-    /**
-     * @param string $slug
-     */
-    public function setSlug(string $slug): void
-    {
-        $this->slug = $slug;
-    }
-
 }

@@ -68,7 +68,6 @@ class JobFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($jobExtremeSensio);
         $manager->persist($jobExpired);
 
-
         for ($i = 100; $i <= 130; $i++) {
             $job = new Job();
             $job->setCategory($manager->merge($this->getReference('category-programming')));

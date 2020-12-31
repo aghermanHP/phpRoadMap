@@ -192,7 +192,7 @@ class Affiliate
      *
      * @return self
      */
-    public function removecategory(Category $category) : self
+    public function removeCategory(Category $category) : self
     {
         $this->categories->removeElement($category);
 
@@ -202,7 +202,7 @@ class Affiliate
     /**
      * @ORM\PrePersist
      */
-    public function prePersist(): void
+    public function prePersist()
     {
         $this->createdAt = new \DateTime();
     }

@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
-class   JobController extends AbstractController
+class JobController extends AbstractController
 {
     /**
      * Lists all job entities.

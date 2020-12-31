@@ -9,4 +9,4 @@ RUN apt-get update \
 # Install git
 RUN apt-get update \
     && apt-get -y install git \
-    && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+    && apt-get clean; rm -rf /var/lib/apt/licdsts/* /tmp/* /var/tmp/* /usr/share/doc/*
