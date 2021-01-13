@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Job;
 use App\Form\JobType;
+use App\Service\ExporterFactory;
 use App\Service\JobDetailsService;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
@@ -220,5 +221,24 @@ class JobController extends AbstractController
             ->setAction($this->generateUrl('job.publish', ['token' => $job->getToken()]))
             ->setMethod('POST')
             ->getForm();
+    }
+
+    /**
+     * Export File
+     *
+     * @Route("/job/export/{format}", name="job.export", methods={"GET", "POST"}, requirements={"token" = "\w+"})
+     *
+     * @param Request $request
+     * @param  ExporterFactory $exporterFactory
+     *
+     * @return Response
+     */
+    public function exportFile(Request $request, ExporterFactory $exporterFactory ): Response
+    {
+        $format = $request->get('format');
+        $dataToShow = $exporterFactory->makeExport($format);
+        return $this->render('test/test.html.twig', [
+            'format' => $dataToShow,
+        ]);
     }
 }
