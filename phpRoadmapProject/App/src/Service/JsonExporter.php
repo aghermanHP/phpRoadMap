@@ -2,20 +2,28 @@
 
 namespace App\Service;
 
+use JsonException;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+
 
 class JsonExporter implements ExporterInterface
 {
-    public function __construct()
-    {
-
-    }
-
     /**
-     * @param String $file
+     * @param Object $jobDetails
+     *
+     * @throws JsonException
+     * @return false|string
      */
-    public function exportFile(String $file): string
+    public function exportFile(Object $jobDetails)
     {
-        $jsonFile = $file;
-        return strtoupper($jsonFile);
+        $encoders = [new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        return $serializer->encode($jobDetails, 'json');
+
     }
 }

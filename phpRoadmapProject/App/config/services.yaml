@@ -40,7 +40,6 @@ services:
             - '@fileData'
 
     App\Service\CsvEncoder:
-        factory: ['@app.exporter_file_factory', makeExport]
         arguments:
             - '@fileData'
 

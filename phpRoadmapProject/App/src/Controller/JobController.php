@@ -50,7 +50,6 @@ class JobController extends AbstractController
      */
     public function show(Job $job, JobDetailsService $jobDetails) : Response
     {
-        var_dump($job->getId());
         return $this->render('job/show.html.twig', [
             'job' => $job,
             'jobDetails' => $jobDetails->renderJobDetails($job->getId())
@@ -230,15 +229,17 @@ class JobController extends AbstractController
      *
      * @param Request $request
      * @param  ExporterFactory $exporterFactory
+     * @param  JobDetailsService $jobDetails
      *
      * @return Response
      */
-    public function exportFile(Request $request, ExporterFactory $exporterFactory ): Response
+    public function exportFile(Request $request, ExporterFactory $exporterFactory, JobDetailsService $jobDetails ): Response
     {
         $format = $request->get('format');
-        $dataToShow = $exporterFactory->makeExport($format);
-        return $this->render('test/test.html.twig', [
-            'format' => $dataToShow,
-        ]);
+        $job = $jobDetails->renderJobDetails(30);
+        $exportBuilder = $exporterFactory->buildExport($format);
+        $dataToReturn = $exportBuilder->exportFile($job);
+
+        return new Response($dataToReturn, Response::HTTP_OK, ['Content-Type', "application/$format"]);
     }
 }

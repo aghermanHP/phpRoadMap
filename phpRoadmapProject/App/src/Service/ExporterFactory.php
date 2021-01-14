@@ -2,8 +2,8 @@
 
 namespace App\Service;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+use App\Entity\Job;
 
 class ExporterFactory
 {
@@ -11,24 +11,16 @@ class ExporterFactory
     /**
      * @param string $format
      *
-     * @return string
+     * @return ExporterInterface
      */
-    public function makeExport(string $format): string
+    public function buildExport(string $format): ExporterInterface
     {
-        if ($format === 'json')
+        switch ($format)
         {
-            $scvFile = new JsonExporter();
-            return $scvFile->$this->makeExport('csv');
+            case 'json':
+                return new JsonExporter();
+            case 'csv':
+                return new CsvExporter();
         }
-        elseif ($format === 'csv')
-        {
-            $scvFile = new CsvExporter();
-            return $scvFile->$this->makeExport('csv');
-        }
-        else
-        {
-            return new NotFoundHttpException('The product does not exist');
-        }
-
     }
 }
