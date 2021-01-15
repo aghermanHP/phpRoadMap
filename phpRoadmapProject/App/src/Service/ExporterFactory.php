@@ -3,8 +3,6 @@
 namespace App\Service;
 
 
-use App\Entity\Job;
-
 class ExporterFactory
 {
 

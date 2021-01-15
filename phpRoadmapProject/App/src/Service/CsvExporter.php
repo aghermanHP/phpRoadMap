@@ -2,10 +2,6 @@
 
 namespace App\Service;
 
-
-use App\Entity\Job;
-use JsonException;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -15,13 +11,16 @@ class CsvExporter implements ExporterInterface
     /**
      * @param Object $jobDetails
      *
-     * @throws \JsonException
      * @return false|string
      */
 
     public function exportFile(Object $jobDetails)
     {
-        $serializer = new Serializer([new ObjectNormalizer()], [new CsvEncoder()]);
-        return $serializer->encode($jobDetails, 'csv');
+        $encoders = [new CsvEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        return $serializer->encode($jobDetails, 'csv', array(CsvEncoder::DELIMITER_KEY => ';'));
     }
 }

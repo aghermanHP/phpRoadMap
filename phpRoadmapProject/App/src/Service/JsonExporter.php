@@ -24,6 +24,5 @@ class JsonExporter implements ExporterInterface
         $serializer = new Serializer($normalizers, $encoders);
 
         return $serializer->encode($jobDetails, 'json');
-
     }
 }
