@@ -32,16 +32,16 @@ services:
         arguments:
             $targetDirectory: '%jobs_directory%'
 
-    app.exporter_file_factory:
-        class: App\Service\ExporterFactory
-
-    App\Service\JsonEncoder:
+    App\Service\ExporterFactory:
         arguments:
-            - '@fileData'
+            $exporters: !tagged "exporter"
 
-    App\Service\CsvEncoder:
-        arguments:
-            - '@fileData'
+    App\Service\JsonExporter:
+        tags: ['exporter']
+
+    App\Service\CsvExporter:
+        tags: ['exporter']
+
 
     App\Service\JobDetailsService:
         arguments: ['@doctrine.orm.default_entity_manager']

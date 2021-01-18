@@ -4,14 +4,14 @@
 namespace App\Service;
 
 
-use App\Entity\Job;
 
 interface ExporterInterface
 {
     /**
-     * @param JobDetailsService $jobDetails
+     * @param object $jobDetails
      *
      * @return Mixed
      */
-    public function exportFile(JobDetailsService $jobDetails);
+    public function export(object $jobDetails): string;
+    public function supportedFormat(): string;
 }

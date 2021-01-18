@@ -225,7 +225,7 @@ class JobController extends AbstractController
     /**
      * Export File
      *
-     * @Route("/job/export/{format}", name="job.export", methods={"GET", "POST"}, requirements={"token" = "\w+"})
+     * @Route("/job/export/{format}/{id}", name="job.export", methods={"GET", "POST"}, requirements={"token" = "\w+"})
      *
      * @param Request $request
      * @param  ExporterFactory $exporterFactory
@@ -236,9 +236,15 @@ class JobController extends AbstractController
     public function exportFile(Request $request, ExporterFactory $exporterFactory, JobDetailsService $jobDetails ): Response
     {
         $format = $request->get('format');
-        $job = $jobDetails->renderJobDetails(30);
-        $exportBuilder = $exporterFactory->buildExport($format);
-        $dataToReturn = $exportBuilder->exportFile($job);
+        $id = $request->get('id');
+        $job = $jobDetails->renderJobDetails($id);
+        try {
+            $exportBuilder = $exporterFactory->buildExport($format);
+        }
+        catch (\LogicException $e){
+            return new Response($e->getMessage(), Response::HTTP_BAD_REQUEST );
+        }
+        $dataToReturn = $exportBuilder->export($job);
 
         return new Response($dataToReturn, Response::HTTP_OK, ['Content-Type', "application/$format"]);
     }

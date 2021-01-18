@@ -2,9 +2,6 @@
 
 namespace App\Service;
 
-use Symfony\Component\Serializer\Encoder\CsvEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 class CsvExporter implements ExporterInterface
 {
@@ -14,13 +11,27 @@ class CsvExporter implements ExporterInterface
      * @return false|string
      */
 
-    public function exportFile(Object $jobDetails)
+    public function export(Object $jobDetails): string
     {
-        $encoders = [new CsvEncoder()];
-        $normalizers = [new ObjectNormalizer()];
-
-        $serializer = new Serializer($normalizers, $encoders);
-
-        return $serializer->encode($jobDetails, 'csv', array(CsvEncoder::DELIMITER_KEY => ';'));
+//        @todo make with serializator
+//        $encoders = [new CsvEncoder()];
+//        $objectNormalizer = new ObjectNormalizer();
+//        $normalizers = [$objectNormalizer];
+//        print_r( $objectNormalizer->normalize($jobDetails));
+//        die;
+//
+//        $serializer = new Serializer($normalizers, $encoders);
+//
+//        return $serializer->encode($jobDetails, 'csv');
+        return implode(",",[
+            "id" => $jobDetails->id,
+            "companyName" => $jobDetails->company,
+            "description" => $jobDetails->description,
+            "email" => $jobDetails->email,
+        ]);
+    }
+    public function supportedFormat(): string
+    {
+        return "csv";
     }
 }

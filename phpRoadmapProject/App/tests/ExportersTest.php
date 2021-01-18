@@ -7,24 +7,32 @@ use App\Entity\Job;
 use App\Service\JobDetailsService;
 use App\Service\JsonExporter;
 use Doctrine\DBAL\Exception;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 
-class ExportersTest extends TestCase
+class ExportersTest extends KernelTestCase
 {
+    private JsonExporter $jsonExporter;
+    private JobDetailsService $jobDetails;
+
+    public function setUp()
+    {
+
+//        $this->jsonExporter = $jsonExporter;
+//        $this->jobDetails = $jobDetails;
+    }
+
     /**
-     * @param JobDetailsService $jobDetails
-     * @param JsonExporter $jsonExporter
      *
      * @throws Exception
      *
      * @return void
      */
-    public function testJsonExporterShouldReturnJson(JsonExporter $jsonExporter, JobDetailsService $jobDetails): void
+    public function testJsonExporterShouldReturnJson(): void
     {
 
-        $job = $jobDetails->renderJobDetails(30);
-        $exportedFile = $jsonExporter->exportFile($job);
+        $job = $this->jobDetails->renderJobDetails(30);
+        $exportedFile = $this->jsonExporter->export($job);
         $this->assertJsonResponse($exportedFile, Response::HTTP_OK);
     }
 

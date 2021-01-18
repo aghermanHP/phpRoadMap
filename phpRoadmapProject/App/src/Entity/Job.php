@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\JobRepository")
@@ -17,6 +18,7 @@ class Job
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"export"})
      */
     private $id;
 
@@ -24,6 +26,7 @@ class Job
      * @var string
      *
      * @ORM\Column(type="string", length=255)
+     * @Groups({"export"})
      */
     private $type;
 
@@ -31,6 +34,7 @@ class Job
      * @var string
      *
      * @ORM\Column(type="string", length=255)
+     * @Groups({"export"})
      */
     private $company;
 
@@ -38,6 +42,7 @@ class Job
      * @var string|null
      *
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"export"})
      */
     private $logo;
 
@@ -45,6 +50,7 @@ class Job
      * @var string|null
      *
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"export"})
      */
     private $url;
 
@@ -52,6 +58,7 @@ class Job
      * @var string
      *
      * @ORM\Column(type="string", length=255)
+     * @Groups({"export"})
      */
     private $position;
 
@@ -59,6 +66,7 @@ class Job
      * @var string
      *
      * @ORM\Column(type="string", length=255)
+     * @Groups({"export"})
      */
     private $location;
 
@@ -66,6 +74,7 @@ class Job
      * @var string
      *
      * @ORM\Column(type="text")
+     * @Groups({"export"})
      */
     private $description;
 
@@ -73,6 +82,7 @@ class Job
      * @var string
      *
      * @ORM\Column(type="text")
+     * @Groups({"export"})
      */
     private $howToApply;
 
@@ -80,6 +90,7 @@ class Job
      * @var string
      *
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Groups({"export"})
      */
     private $token;
 
@@ -87,6 +98,7 @@ class Job
      * @var bool
      *
      * @ORM\Column(type="boolean")
+     * @Groups({"export"})
      */
     private $public;
 
@@ -94,6 +106,7 @@ class Job
      * @var bool
      *
      * @ORM\Column(type="boolean")
+     * @Groups({"export"})
      */
     private $activated;
 
@@ -101,6 +114,7 @@ class Job
      * @var string
      *
      * @ORM\Column(type="string", length=255)
+     * @Groups({"export"})
      */
     private $email;
 
@@ -108,6 +122,7 @@ class Job
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
+     * @Groups({"export"})
      */
     private $expiresAt;
 
@@ -115,6 +130,7 @@ class Job
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
+     * @Groups({"export"})
      */
     private $createdAt;
 
@@ -122,6 +138,7 @@ class Job
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
+     * @Groups({"export"})
      */
     private $updatedAt;
 

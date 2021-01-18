@@ -30,9 +30,17 @@
             <ul class="nav navbar-nav navbar-right">
             <li>
                 <div>
-                    <a href="{{ path('job.export', {format: 'json'})}}" class="btn btn-default navbar-btn">export a Job</a>
+                    <a href="{{ path('job.export', {format: 'json', id: 1})}}" class="btn btn-default navbar-btn">export a Job in json</a>
                 </div>
             </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <div>
+                        <a href="{{ path('job.export', {format: 'csv', id: 1})}}" class="btn btn-default navbar-btn">export a Job in csv</a>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>

@@ -5,6 +5,18 @@ namespace App\Service;
 
 class ExporterFactory
 {
+    private array $exporters;
+
+    /**
+     * ExporterFactory constructor.
+     * @param iterable|ExporterInterface[] $exporters
+     */
+    public function __construct( iterable $exporters = [])
+    {
+        foreach ($exporters as $exporter){
+            $this->exporters[$exporter->supportedFormat()] = $exporter;
+        }
+    }
 
     /**
      * @param string $format
@@ -13,12 +25,9 @@ class ExporterFactory
      */
     public function buildExport(string $format): ExporterInterface
     {
-        switch ($format)
-        {
-            case 'json':
-                return new JsonExporter();
-            case 'csv':
-                return new CsvExporter();
+        if (!isset($this->exporters[$format])){
+            throw new \LogicException("Format '$format' is not supported");
         }
+     return $this->exporters[$format];
     }
 }

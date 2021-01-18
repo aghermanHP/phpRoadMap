@@ -2,27 +2,36 @@
 
 namespace App\Service;
 
+use App\DTO\JobDTO;
 use JsonException;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 
 class JsonExporter implements ExporterInterface
 {
     /**
-     * @param Object $jobDetails
+     * @param Object|JobDTO $jobDetails
      *
-     * @throws JsonException
      * @return false|string
      */
-    public function exportFile(Object $jobDetails)
+    public function export(object $jobDetails): string
     {
-        $encoders = [new JsonEncoder()];
-        $normalizers = [new ObjectNormalizer()];
+//        @fixme implement with serialiser
+//        $encoders = [new JsonEncoder()];
+//        $normalizers = [new ObjectNormalizer()];
+//
+//        $serializer = new Serializer($normalizers, $encoders);
+//
+//        return $serializer->encode($jobDetails, 'json', ["groups"=>["export"]]);
 
-        $serializer = new Serializer($normalizers, $encoders);
-
-        return $serializer->encode($jobDetails, 'json');
+        return json_encode([
+            "id" => $jobDetails->id,
+            "companyName" => $jobDetails->company,
+            "description" => $jobDetails->description,
+            "email" => $jobDetails->email,
+        ]);
+    }
+    public function supportedFormat(): string
+    {
+        return "json";
     }
 }
