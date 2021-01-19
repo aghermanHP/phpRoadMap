@@ -8,3 +8,6 @@ job.export:
   requirements:
     id: '\d+'
 
+App\Routing\ExtraLoader:
+  tags: [routing.loader]
+
