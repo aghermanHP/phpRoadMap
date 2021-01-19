@@ -21,8 +21,6 @@ class JobController extends AbstractController
     /**
      * Lists all job entities.
      *
-     * @Route("/", name="job.list", methods="GET")
-     *
      * @param EntityManagerInterface $em
      *
      * @return Response
@@ -224,8 +222,6 @@ class JobController extends AbstractController
 
     /**
      * Export File
-     *
-     * @Route("/job/export/{format}/{id}", name="job.export", methods={"GET", "POST"}, requirements={"token" = "\w+"})
      *
      * @param Request $request
      * @param  ExporterFactory $exporterFactory
