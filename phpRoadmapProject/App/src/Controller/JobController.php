@@ -234,14 +234,17 @@ class JobController extends AbstractController
         $format = $request->get('format');
         $id = $request->get('id');
         $job = $jobDetails->renderJobDetails($id);
+
         try {
-            $exportBuilder = $exporterFactory->buildExport($format);
+            return new Response(
+                $exporterFactory->buildExport($format)->export($job),
+                Response::HTTP_OK,
+                ["Content-Type:$format", "application/$format"]
+            );
+
         }
         catch (\LogicException $e){
             return new Response($e->getMessage(), Response::HTTP_BAD_REQUEST );
         }
-        $dataToReturn = $exportBuilder->export($job);
-
-        return new Response($dataToReturn, Response::HTTP_OK, ['Content-Type', "application/$format"]);
     }
 }

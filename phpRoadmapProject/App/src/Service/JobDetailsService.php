@@ -14,11 +14,18 @@ class JobDetailsService
     private $em;
 
     /**
-     * @param EntityManagerInterface $em
+     * @var JobTransformer
      */
-    public function __construct(EntityManagerInterface $em)
+    private JobTransformer $jobTransformer;
+
+    /**
+     * @param EntityManagerInterface $em
+     * @param JobTransformer $jobTransformer
+     */
+    public function __construct(EntityManagerInterface $em, JobTransformer $jobTransformer)
     {
         $this->em = $em;
+        $this->jobTransformer = $jobTransformer;
     }
 
     /**
@@ -29,9 +36,6 @@ class JobDetailsService
     public function renderJobDetails(int $jobId) : object
     {
         $jobEntity = $this->em->getRepository(Job::class)->find($jobId);
-        $jobTransformer = new JobTransformer($jobEntity);
-        return $jobTransformer->transformJob();
-
-
+        return $this->jobTransformer->transformJob($jobEntity);
     }
 }
