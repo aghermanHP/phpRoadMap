@@ -36,7 +36,7 @@ class ExtraLoader extends Loader
         return $routes;
     }
 
-    public function supports($resource, string $type = null)
+    public function supports($resource, $type = null)
     {
         return 'extra' === $type;
     }

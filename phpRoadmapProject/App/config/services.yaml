@@ -42,6 +42,8 @@ services:
     App\Service\CsvExporter:
         tags: ['exporter']
 
+    App\Routing\ExtraLoader:
+        tags: [ routing.loader ]
 
     App\Service\JobDetailsService:
         arguments: ['@doctrine.orm.default_entity_manager']
