@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class JobController extends AbstractController
 {
@@ -222,25 +223,28 @@ class JobController extends AbstractController
 
     /**
      * Export File
+     * @Route("/job/export/{id}.{format}", name="job.export", methods={"GET", "POST"}, requirements={"id" = "\d+"})
      *
+     * @Entity("job", expr="repository.find(id)")
+     *
+     * @param Job $job
      * @param Request $request
      * @param  ExporterFactory $exporterFactory
      * @param  JobDetailsService $jobDetails
      *
      * @return Response
      */
-    public function exportFile(Request $request, ExporterFactory $exporterFactory, JobDetailsService $jobDetails ): Response
+    public function exportFile(Request $request, job $job, ExporterFactory $exporterFactory, JobDetailsService $jobDetails ): Response
     {
         $format = $request->get('format');
-        $id = $request->get('id');
-        $job = $jobDetails->renderJobDetails($id);
+        $jobDto = $jobDetails->renderJobDetails($job);
         try {
             $exportBuilder = $exporterFactory->buildExport($format);
         }
         catch (\LogicException $e){
             return new Response($e->getMessage(), Response::HTTP_BAD_REQUEST );
         }
-        $dataToReturn = $exportBuilder->export($job);
+        $dataToReturn = $exportBuilder->export($jobDto);
 
         return new Response($dataToReturn, Response::HTTP_OK, ['Content-Type', "application/$format"]);
     }

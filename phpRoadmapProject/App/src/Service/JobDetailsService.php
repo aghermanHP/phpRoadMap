@@ -22,14 +22,13 @@ class JobDetailsService
     }
 
     /**
-     * @param int $jobId
+     * @param Job $job
      *
      * @return object
      */
-    public function renderJobDetails(int $jobId) : object
+    public function renderJobDetails(Job  $job) : object
     {
-        $jobEntity = $this->em->getRepository(Job::class)->find($jobId);
-        $jobTransformer = new JobTransformer($jobEntity);
+        $jobTransformer = new JobTransformer($job);
         return $jobTransformer->transformJob();
 
 
