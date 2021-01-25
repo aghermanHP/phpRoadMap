@@ -10,15 +10,38 @@ use App\Service\JobDetailsService;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Contracts\Cache\CacheInterface;
 
 class JobController extends AbstractController
 {
+
+    /**
+     * @var CacheInterface
+     */
+    private CacheInterface $cache;
+
+    /**
+     * @var EntityManagerInterface
+     */
+    private EntityManagerInterface $em;
+
+    /**
+     * JobController constructor.
+     * @param CacheInterface $cache
+     * @param EntityManagerInterface $em
+     */
+    public function __construct(CacheInterface $cache, EntityManagerInterface $em)
+    {
+        $this->cache = $cache;
+        $this->em = $em;
+    }
+
     /**
      * Lists all job entities.
      *
@@ -28,7 +51,7 @@ class JobController extends AbstractController
      */
     public function list(EntityManagerInterface $em) : Response
     {
-        $categories = $em->getRepository(Category::class)->findWithActiveJobs();
+        $categories = $this->em->getRepository(Category::class)->findWithActiveJobs();
 
         return $this->render('job/list.html.twig', [
             'categories' => $categories,
@@ -51,7 +74,7 @@ class JobController extends AbstractController
     {
         return $this->render('job/show.html.twig', [
             'job' => $job,
-            'jobDetails' => $jobDetails->renderJobDetails($job->getId())
+            'jobDetails' => $jobDetails->renderJobDetails($job)
         ]);
     }
 

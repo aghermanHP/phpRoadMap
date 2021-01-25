@@ -43,10 +43,11 @@ services:
         tags: ['exporter']
 
     App\Routing\ExtraLoader:
-        tags: [ routing.loader ]
+        tags: ['routing.loader']
 
     App\Service\JobDetailsService:
         arguments: ['@doctrine.orm.default_entity_manager']
+        lazy: true
 
     App\Service\JobRantingService:
         arguments: ['@doctrine.orm.default_entity_manager']

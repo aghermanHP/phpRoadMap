@@ -31,3 +31,15 @@ services:
         volumes:
             - ./../App:/application
             - ./php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
+    redis:
+        image: redis:alpine
+        container_name: backend_api_redis
+        environment:
+            - REDIS_PASSWORD=password123
+            - REDIS_AOF_ENABLED=no
+        ports:
+                - 6379:6379
+        restart: unless-stopped
+        volumes:
+            - ./redis-data:/application
+            - ./redis/redis.conf:/etc/php/7.2/fpm/conf.d/99-overrides.ini

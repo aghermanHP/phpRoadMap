@@ -51,3 +51,6 @@ logs-php:
 run-tests:
 	docker-compose -f docker/docker-compose.yml -p ${PROJECT_NAME} exec backend_api_php_test bash -c "bin/phpunit -c phpunit.xml.dist --stop-on-failure"
 
+create-network:
+	docker network create redis
+
