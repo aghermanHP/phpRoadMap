@@ -9,11 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Cache\ItemInterface;
 
 
 class ContactsController extends AbstractController
 {
-
     /**
      * @var CacheInterface
      */
@@ -42,7 +42,8 @@ class ContactsController extends AbstractController
      */
     public function getContactList(): Response
     {
-        return $this->cache->get('jobs.contacts.cache', function () {
+        return $this->cache->get('jobs.contacts.cache', function (ItemInterface $item) {
+            $item->expiresAfter(60);
 
             return $this->render('contacts/contacts.html.twig');
         });
