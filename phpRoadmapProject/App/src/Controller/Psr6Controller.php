@@ -47,7 +47,21 @@ class Psr6Controller extends AbstractController
 
         $this->cache->getitem('psr6_caching_method');
         return $cachedTemplate->get();
+    }
 
+    /**
+     * @Route("/template")
+     * @return Response
+     * @throws InvalidArgumentException
+     */
+    public function getTemplate(): Response
+    {
+        $cachedTemplate = $this->cache->getItem("psr6_caching_method");
+        $cachedTemplate->set($this->render('test/testTemplate.hml.twig'));
+        $this->cache->save($cachedTemplate);
+
+        $this->cache->getitem('psr6_caching_method');
+        return $cachedTemplate->get();
     }
 
 }

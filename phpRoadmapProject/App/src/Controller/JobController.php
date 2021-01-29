@@ -98,6 +98,11 @@ class JobController extends AbstractController
             $em->persist($job);
             $em->flush();
 
+            $this->addFlash(
+                'notice',
+                'Your job were created!'
+            );
+
             return $this->redirectToRoute(
                 'job.preview',
                 ['token' => $job->getToken()]

@@ -62,3 +62,9 @@ services:
     App\EventListener\JobTokenListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
+
+#    #cache adapters
+#    cache.adapter.chain-worker:
+#        class:
+#        arguments:
+#            $adapters: ["@cache.adapter.array", "@cache.adapter.redis"]

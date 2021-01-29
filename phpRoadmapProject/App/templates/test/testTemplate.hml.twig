@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CSS Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Style the header */
+        header {
+            background-color: #777;
+            padding: 10px;
+            text-align: center;
+            color: white;
+            position: fixed;
+            width: 100%;
+            display: inline;
+        }
+
+        /* Create two columns/boxes that floats next to each other */
+        nav {
+            float: left;
+            width: 20%;
+            background: #ccc;
+            padding: 20px;
+            top:10%;
+            position: fixed;
+            height: 100%;
+        }
+
+        /* Style the list inside the menu */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        article {
+            float: right;
+            padding: 20px;
+            position: relative;
+            margin-top: 5%;
+            height: 100%;
+            width: 79%;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the footer */
+        footer {
+            background-color: #777;
+            padding: 10px;
+            text-align: center;
+            color: white;
+            bottom: 0;
+            position: fixed;
+            width: 100%;
+        }
+
+        /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+        @media (max-width: 600px) {
+            nav, article {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h2>Cities</h2>
+</header>
+
+<section>
+    <nav>
+        <ul>
+            <li><a href="#">London</a></li>
+            <li><a href="#">Paris</a></li>
+            <li><a href="#">Tokyo</a></li>
+        </ul>
+    </nav>
+
+    <article>
+        {% block body %}{% endblock %}
+    </article>
+
+    <nav class="
+    navbar navbar-expand-lg navbar-dark navbar-bg
+{{ app.session.flashbag.peek('success')|length > 0 ? '' : 'mb-5' }}">
+
+
+</section>
+
+<footer>
+    <p>Footer</p>
+</footer>
+
+</body>
+</html>
