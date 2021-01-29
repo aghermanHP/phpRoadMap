@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Psr\Cache\CacheItemPoolInterface;
+use Twig\Loader\ArrayLoader;
 
 class Psr6Controller extends AbstractController
 {
@@ -26,12 +27,10 @@ class Psr6Controller extends AbstractController
     /**
      * JobController constructor.
      * @param CacheItemPoolInterface $cache
-     * @param EntityManagerInterface $em
      */
-    public function __construct(CacheItemPoolInterface $cache, EntityManagerInterface $em)
+    public function __construct(CacheItemPoolInterface $cache)
     {
         $this->cache = $cache;
-        $this->em = $em;
     }
 
     /**
@@ -63,5 +62,4 @@ class Psr6Controller extends AbstractController
         $this->cache->getitem('psr6_caching_method');
         return $cachedTemplate->get();
     }
-
 }

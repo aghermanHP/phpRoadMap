@@ -7,6 +7,7 @@
     <style>
         * {
             box-sizing: border-box;
+            margin: unset;
         }
 
         body {
@@ -16,15 +17,16 @@
         /* Style the header */
         header {
             background-color: #777;
-            padding: 10px;
             text-align: center;
+            margin: 0;
             color: white;
             position: fixed;
             width: 100%;
+            height: 10%;
             display: inline;
+            z-index: 2;
         }
 
-        /* Create two columns/boxes that floats next to each other */
         nav {
             float: left;
             width: 20%;
@@ -35,7 +37,6 @@
             height: 100%;
         }
 
-        /* Style the list inside the menu */
         nav ul {
             list-style-type: none;
             padding: 0;
@@ -61,14 +62,6 @@
             position: fixed;
             width: 100%;
         }
-
-        /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-        @media (max-width: 600px) {
-            nav, article {
-                width: 100%;
-                height: auto;
-            }
-        }
     </style>
 </head>
 <body>
@@ -79,19 +72,20 @@
 <section>
     <nav>
         <ul>
-            <li><a href="#">London</a></li>
-            <li><a href="#">Paris</a></li>
-            <li><a href="#">Tokyo</a></li>
+            <li><a href="#">{{ test_variable|upper }}</a></li>
+            <li><a href="#">{{ test_variable|lower }}</a></li>
+            <li><a href="#">{{ test_variable|reverse }}</a></li>
+            <li><a href="#">{{ test_variable|capitalize }}</a></li>
+            <li><a href="#">{{ test_variable|escape }}</a></li>
+            <li><a href="#">{{ test_variable|length }}</a></li>
         </ul>
     </nav>
 
     <article>
         {% block body %}{% endblock %}
+        {{ include('test/test.html.twig') }}
+        {{ include('/job/newJob.html.twig') }}
     </article>
-
-    <nav class="
-    navbar navbar-expand-lg navbar-dark navbar-bg
-{{ app.session.flashbag.peek('success')|length > 0 ? '' : 'mb-5' }}">
 
 
 </section>
