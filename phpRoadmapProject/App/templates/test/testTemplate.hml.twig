@@ -83,8 +83,12 @@
 
     <article>
         {% block body %}{% endblock %}
-        {{ include('test/test.html.twig') }}
-        {{ include('/job/newJob.html.twig') }}
+        {{ include('test/markdown.html.twig', {"users":[
+            {"id":1, "name": "test", "age": 21, "status": "activ"},
+            {"id":2, "name": "vasea", "age": 211, "status": "activ"},
+            {"id":3, "name": "adrian", "age": 212, "status": "activ"}
+        ]}) }}
+{#        {{ include('/job/newJob.html.twig') }}#}
     </article>
 
 

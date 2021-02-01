@@ -63,8 +63,11 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
 
-#    #cache adapters
+    App\Twig\JobExtention:
+        tags: ["twig.extension"]
+
+    #cache adapters
 #    cache.adapter.chain-worker:
-#        class:
+#        class: Symfony\Component\Cache\Adapter\ChainAdapter
 #        arguments:
 #            $adapters: ["@cache.adapter.array", "@cache.adapter.redis"]
