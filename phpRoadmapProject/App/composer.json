@@ -30,7 +30,8 @@
         "symfony/web-link": "4.2.*",
         "symfony/yaml": "4.2.*",
         "twig/markdown-extra": "^3.2",
-        "twig/extra-bundle": "*"
+        "twig/extra-bundle": "*",
+        "symfony/security-csrf": "*"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.1",

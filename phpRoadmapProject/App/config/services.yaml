@@ -66,6 +66,10 @@ services:
     App\Twig\JobExtention:
         tags: ["twig.extension"]
 
+    App\EventListener\TaskTokenListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+
     #cache adapters
 #    cache.adapter.chain-worker:
 #        class: Symfony\Component\Cache\Adapter\ChainAdapter
