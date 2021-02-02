@@ -27,6 +27,10 @@ class Task
      */
     private $token;
 
+    private $image_path;
+
+    private $webPath;
+
     public function getTask(): string
     {
         return $this->task;
@@ -61,5 +65,37 @@ class Task
     public function setToken(string $token): void
     {
         $this->token = $token;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImagePath()
+    {
+        return $this->image_path;
+    }
+
+    /**
+     * @param mixed $image_path
+     */
+    public function setImagePath($image_path): void
+    {
+        $this->image_path = $image_path;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWebPath()
+    {
+        return $this->webPath;
+    }
+
+    /**
+     * @param mixed $webPath
+     */
+    public function setWebPath($webPath): void
+    {
+        $this->webPath = $webPath;
     }
 }
