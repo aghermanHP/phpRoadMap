@@ -44,6 +44,8 @@ class JobController extends AbstractController
     /**
      * Lists all job entities.
      *
+     * @Route("/", name="job.list", methods="GET")
+     *
      * @param EntityManagerInterface $em
      *
      * @return Response
