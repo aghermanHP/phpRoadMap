@@ -24,6 +24,7 @@ security:
                 path: app_logout
                 # where to redirect after logout
                 # target: app_any_route
+            switch_user: true
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -37,3 +38,6 @@ security:
          - { path: ^/task, roles: ROLE_ADMIN }
          - { path: ^/job/*, roles: [IS_AUTHENTICATED_FULLY,ROLE_USER] }
          - { path: ^/logout, roles: [IS_AUTHENTICATED_FULLY,ROLE_USER] }
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_ADMIN
+        ROLE_SUPER_ADMIN: [ ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
