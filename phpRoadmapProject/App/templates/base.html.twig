@@ -35,7 +35,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <div>
-                        <p>{{ app.user.email }}</p>
+                        {% if app.user %}
+                            <p>{{ app.user.email }}</p>
+                        {% endif %}
                     </div>
                 </li>
             </ul>

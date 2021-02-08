@@ -24,10 +24,10 @@ class CsvExporter implements ExporterInterface
 //
 //        return $serializer->encode($jobDetails, 'csv');
         return implode(",",[
-            "id" => $jobDetails->id,
-            "companyName" => $jobDetails->company,
-            "description" => $jobDetails->description,
-            "email" => $jobDetails->email,
+            "id" => $jobDetails->getId(),
+            "companyName" => $jobDetails->getCompany(),
+            "description" => $jobDetails->getDescription(),
+            "email" => $jobDetails->getEmail(),
         ]);
     }
     public function supportedFormat(): string

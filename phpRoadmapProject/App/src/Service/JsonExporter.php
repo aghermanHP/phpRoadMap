@@ -24,10 +24,10 @@ class JsonExporter implements ExporterInterface
 //        return $serializer->encode($jobDetails, 'json', ["groups"=>["export"]]);
 
         return json_encode([
-            "id" => $jobDetails->id,
-            "companyName" => $jobDetails->company,
-            "description" => $jobDetails->description,
-            "email" => $jobDetails->email,
+            "id" => $jobDetails->getId(),
+            "companyName" => $jobDetails->getCompany(),
+            "description" => $jobDetails->getDescription(),
+            "email" => $jobDetails->getEmail(),
         ]);
     }
     public function supportedFormat(): string

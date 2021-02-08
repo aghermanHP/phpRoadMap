@@ -67,15 +67,13 @@ class JobController extends AbstractController
      * @Entity("job", expr="repository.findActiveJob(id)")
      *
      * @param Job $job
-     * @param JobDetailsService $jobDetails
      *
      * @return Response
      */
-    public function show(Job $job, JobDetailsService $jobDetails) : Response
+    public function show(Job $job) : Response
     {
         return $this->render('job/show.html.twig', [
-            'job' => $job,
-            'jobDetails' => $jobDetails->renderJobDetails($job)
+            'job' => $job
         ]);
     }
 
@@ -254,7 +252,7 @@ class JobController extends AbstractController
      * Export File
      * @Route("/job/export/{id}.{format}", name="job.export", methods={"GET", "POST"}, requirements={"id" = "\d+"})
      *
-     * @Entity("job", expr="repository.find(id)")
+     * @Entity("job", expr="repository.findActiveJob(id)")
      *
      * @param Job $job
      * @param Request $request
@@ -266,7 +264,7 @@ class JobController extends AbstractController
     public function exportFile(Request $request, job $job, ExporterFactory $exporterFactory, JobDetailsService $jobDetails ): Response
     {
         $format = $request->get('format');
-        $jobDto = $jobDetails->renderJobDetails($job);
+        $jobDto = $job;
         try {
             $exportBuilder = $exporterFactory->buildExport($format);
         }
