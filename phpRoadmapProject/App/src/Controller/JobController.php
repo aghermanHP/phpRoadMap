@@ -252,7 +252,7 @@ class JobController extends AbstractController
      * Export File
      * @Route("/job/export/{id}.{format}", name="job.export", methods={"GET", "POST"}, requirements={"id" = "\d+"})
      *
-     * @Entity("job", expr="repository.findActiveJob(id)")
+     * @Entity("job", expr="repository.findJob(id)")
      *
      * @param Job $job
      * @param Request $request

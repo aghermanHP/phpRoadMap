@@ -49,6 +49,23 @@ class JobRepository extends EntityRepository
     }
 
     /**
+     * @param int $id
+     *
+     * @throws NonUniqueResultException
+     *
+     * @return Job|null
+     */
+    public function findJob(int $id) : ?Job
+    {
+        return $this->createQueryBuilder('j')
+            ->where('j.id = :id')
+            ->setParameter('id', $id)
+//            ->setParameter('date', new \DateTime())
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
      * @param Category $category
      *
      * @return AbstractQuery
