@@ -5,11 +5,12 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Job;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
-class CategoryController extends Controller
+class CategoryController extends AbstractController
 {
     /**
      * Finds and displays a category entity.

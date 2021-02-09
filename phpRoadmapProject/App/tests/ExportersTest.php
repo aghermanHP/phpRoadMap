@@ -34,7 +34,11 @@ class ExportersTest extends KernelTestCase
 
         $exportedFile = $this->jsonExporter->export($job);
 
-        $this->assertIsObject(json_decode($exportedFile));
+        $expectedResult = '{"id":12,"companyName":"UTM","description":"this is description","email":"someEmail@email.org","How to apply":"send cv","Location":"Chisinau"}';
+
+        self::assertSame($expectedResult, $exportedFile);
+
+//        self::assertIsObject(json_decode($exportedFile, true));
     }
 
     /**
@@ -47,7 +51,10 @@ class ExportersTest extends KernelTestCase
         $job = $this->prepareJob();
 
         $exportedFile = $this->csvExporter->export($job);
-        $this->assertIsArray(str_getcsv($exportedFile));
+
+        $expectedResult = "12,UTM,this is description,someEmail@email.org,send cv,Chisinau";
+
+        self::assertSame($expectedResult, $exportedFile);
     }
 
     public function prepareJob()

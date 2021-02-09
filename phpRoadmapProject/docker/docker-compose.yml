@@ -43,3 +43,9 @@ services:
         volumes:
             - ./redis-data:/application
             - ./redis/redis.conf:/etc/php/7.2/fpm/conf.d/99-overrides.ini
+
+    mailhog:
+        image: mailhog/mailhog
+        ports:
+            - 1025:1025 # smtp server
+            - 8025:8025 # web ui
