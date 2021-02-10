@@ -24,7 +24,9 @@ class MailerController extends AbstractController
             ->to('you@example.com')
             ->subject('Time for Symfony Mailer!')
             ->text('Sending emails is fun again!')
+            ->attachFromPath(__DIR__."/test.txt", 'Privacy Policy')
             ->html('<p>See Twig integration for better HTML integration!</p>');
+
 
 
         try {

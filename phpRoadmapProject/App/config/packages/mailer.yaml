@@ -1,4 +1,4 @@
 framework:
     mailer:
-        dsn: 'MAILER_DSN=smtp://mailhog:1025'
+        dsn: 'smtp://mailhog:1025'
 
