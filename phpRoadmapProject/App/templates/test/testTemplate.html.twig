@@ -1,5 +1,8 @@
-<h1>Hello from
+<h1 style="color: darkgreen">Hello from
     {% if app.user %}
-        <p>{{ app.user.email }}</p>
+        <p style="color: rebeccapurple">{{ app.user.email }}</p>
+
+        {% else %}
+                <p style="color: red">anonymous user</p>
     {% endif %}
 </h1>

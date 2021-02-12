@@ -26,8 +26,8 @@ class MailerController extends AbstractController
             ->text('Sending emails is fun again!')
             ->attachFromPath(__DIR__."/test.txt", 'Privacy Policy')
             ->htmlTemplate("test/testTemplate.html.twig");
-//            ->html('<p>See Twig integration for better HTML integration!</p>');
-
+//            ->html('<p>See Twig integration for better HTML integration!</p>');s
+//        $email->getHeaders()->addTextHeader('dsn','alternative');
 
 
         try {
