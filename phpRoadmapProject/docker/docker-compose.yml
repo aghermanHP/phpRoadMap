@@ -51,7 +51,7 @@ services:
             - 8025:8025 # web ui
 
     second_mailhog:
-        image: mailhog/mailhog:latest
+        image: mailhog/mailhog
         ports:
-            - 1027:1027 # smtp server
-            - 8027:8027 # web ui
+            - 1027:1025 # smtp server
+            - 8027:8025 # web ui
