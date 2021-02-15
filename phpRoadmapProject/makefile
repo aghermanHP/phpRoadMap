@@ -45,6 +45,9 @@ nginx:
 db:
 	docker-compose -f docker/docker-compose.yml -p ${PROJECT_NAME} exec mysql sh
 
+mongodb:
+	docker-compose -f docker/docker-compose.yml -p ${PROJECT_NAME} exec mongodb sh
+
 logs-php:
 	docker-compose -f docker/docker-compose.yml -p ${PROJECT_NAME} logs -f backend_api_php
 

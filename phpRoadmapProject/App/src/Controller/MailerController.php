@@ -27,7 +27,7 @@ class MailerController extends AbstractController
             ->attachFromPath(__DIR__."/test.txt", 'Privacy Policy')
             ->htmlTemplate("test/testTemplate.html.twig");
 //            ->html('<p>See Twig integration for better HTML integration!</p>');s
-        $email->getHeaders()->addTextHeader('X-transport','alternative');
+//        $email->getHeaders()->addTextHeader('X-transport','alternative');
 
 
         try {
