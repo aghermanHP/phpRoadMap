@@ -19,6 +19,7 @@ class LoginTest extends WebTestCase
                 "password" => "admin",
                 "csrf_token" => "\$argon2i\$v=19\$m=65536,t=4,p=1\$UEpFNFVnTWZHTUM4QWFQNw\$MSbEQMK4n7hp+gYFcVVDeRO3hFvnhmyAD0sIn84fDy8"
             ]);
-        self::assertEquals(302, $client->getResponse()->getStatusCode());
+        $client->followRedirect();
+        self::assertEquals(200, $client->getResponse()->getStatusCode());
     }
 }

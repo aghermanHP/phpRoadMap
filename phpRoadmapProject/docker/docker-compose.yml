@@ -32,7 +32,7 @@ services:
             - ./../App:/application
             - ./php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
     redis:
-        image: redis:alpine
+        image: library/redis:6.0.6-alpine
         container_name: backend_api_redis
         environment:
             - REDIS_PASSWORD=password123

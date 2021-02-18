@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Job;
 use App\Form\JobType;
+use App\Message\SmsNotification;
 use App\Service\ExporterFactory;
 use App\Service\JobDetailsService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,8 +14,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Cache\CacheInterface;
 
 class JobController extends AbstractController
@@ -84,10 +87,11 @@ class JobController extends AbstractController
      *
      * @param Request $request
      * @param EntityManagerInterface $em
+     * @param Security $security
      *
      * @return RedirectResponse|Response
      */
-    public function create(Request $request, EntityManagerInterface $em) : Response
+    public function create(Request $request, EntityManagerInterface $em, Security $security, MailerInterface $mailer) : Response
     {
         $job = new Job();
         $form = $this->createForm(JobType::class, $job);
@@ -96,6 +100,9 @@ class JobController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($job);
             $em->flush();
+            $currentUser = $security->getUser();
+
+            $this->dispatchMessage(new SmsNotification($currentUser->getUsername(), $job->getId(), $job->getDescription(), $mailer));
 
             $this->addFlash(
                 'notice',
