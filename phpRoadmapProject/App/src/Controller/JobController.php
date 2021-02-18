@@ -91,7 +91,7 @@ class JobController extends AbstractController
      *
      * @return RedirectResponse|Response
      */
-    public function create(Request $request, EntityManagerInterface $em, Security $security, MailerInterface $mailer) : Response
+    public function create(Request $request, EntityManagerInterface $em, Security $security) : Response
     {
         $job = new Job();
         $form = $this->createForm(JobType::class, $job);
@@ -102,7 +102,7 @@ class JobController extends AbstractController
             $em->flush();
             $currentUser = $security->getUser();
 
-            $this->dispatchMessage(new SmsNotification($currentUser->getUsername(), $job->getId(), $job->getDescription(), $mailer));
+            $this->dispatchMessage(new SmsNotification($currentUser->getUsername(), $job->getId(), $job->getDescription()));
 
             $this->addFlash(
                 'notice',
