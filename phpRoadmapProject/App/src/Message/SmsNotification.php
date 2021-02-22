@@ -25,7 +25,11 @@ class SmsNotification
     {
         $from = "adrianJobeet@pentalog.com";
         $subject = "were created new job on jobeet";
-        $body = "<h1>Hello dear client</h1><p>You maded an job with id $this->id and with this description: $this->description</p><br><a href='localhost:8001/job/$this->id'> Got to job</a>";
+        $body = "<h1>Hello dear client</h1>
+                 <p>You maded an job with id $this->id and with this description: $this->description</p>
+                 <br>
+                 <a href='localhost:8001/job/$this->id'> Got to job</a>
+                 ";
 
         $mailerService = new SendMail();
 
