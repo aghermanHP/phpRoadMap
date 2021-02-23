@@ -15,6 +15,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Security;
@@ -91,7 +92,7 @@ class JobController extends AbstractController
      *
      * @return RedirectResponse|Response
      */
-    public function create(Request $request, EntityManagerInterface $em, Security $security, MailerInterface $mailer) : Response
+    public function create(Request $request, EntityManagerInterface $em, Security $security, MessageBusInterface $messageBus) : Response
     {
         $job = new Job();
         $form = $this->createForm(JobType::class, $job);
@@ -103,7 +104,7 @@ class JobController extends AbstractController
 
             $currentUser = $security->getUser();
 
-            $this->dispatchMessage(new SmsNotification($currentUser->getUsername(), $job->getId(), $job->getDescription(), $mailer));
+            $this->dispatchMessage(new SmsNotification($currentUser->getUsername(), $job->getId(), $job->getDescription()));
 
 
             $this->addFlash(

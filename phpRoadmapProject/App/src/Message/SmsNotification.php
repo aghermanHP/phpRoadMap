@@ -3,36 +3,42 @@
 
 namespace App\Message;
 
-use App\Service\SendMail;
-use Symfony\Component\Mailer\MailerInterface;
 
 class SmsNotification
 {
-    private $id;
-    private $description;
-    private $mailer;
     private $toEmail;
+    private $jobId;
+    private $jobDescription;
 
-    public function __construct(string $toEmail, int $id, string $description, MailerInterface $mailer)
+
+    public function __construct(string $toEmail, int $jobId, string $jobDescription)
     {
         $this->toEmail = $toEmail;
-        $this->id = $id;
-        $this->description = $description;
-        $this->mailer = $mailer;
+        $this->jobId = $jobId;
+        $this->jobDescription = $jobDescription;
     }
 
-    public function getContent(): void
+    /**
+     * @return string
+     */
+    public function getJobDescription(): string
     {
-        $from = "adrianJobeet@pentalog.com";
-        $subject = "were created new job on jobeet";
-        $body = "<h1>Hello dear client</h1>
-                 <p>You maded an job with id $this->id and with this description: $this->description</p>
-                 <br>
-                 <a href='localhost:8001/job/$this->id'> Got to job</a>
-                 ";
+        return $this->jobDescription;
+    }
 
-        $mailerService = new SendMail();
+    /**
+     * @return string
+     */
+    public function getToEmail(): string
+    {
+        return $this->toEmail;
+    }
 
-        $mailerService->sendAnEmail($this->mailer, $from, $this->toEmail, $subject, $body);
+    /**
+     * @return int
+     */
+    public function getJobId(): int
+    {
+        return $this->jobId;
     }
 }
