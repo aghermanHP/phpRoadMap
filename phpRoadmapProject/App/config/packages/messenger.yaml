@@ -1,7 +1,7 @@
 framework:
   messenger:
     transports:
-      doctrine_transport:
+      default_transport:
         dsn: "%env(MESSENGER_TRANSPORT_DSN)%"
         options:
           auto_setup: false
@@ -9,7 +9,7 @@ framework:
 
     routing:
       # Route your messages to the transports
-      App\Message\SmsNotification: doctrine_transport
+      App\Message\SmsNotification: default_transport
 
     buses:
       messenger.bus.default:
