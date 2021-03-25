@@ -29,6 +29,11 @@
         <!-- MESSENGER_TRANSPORT_DSN=amqp://guest:guest@localhost:5672/%2f/messages -->
         <!-- MESSENGER_TRANSPORT_DSN=redis://localhost:6379/messages -->
         <!-- ###- symfony/messenger ### -->
+
+        <!-- ###+ doctrine/mongodb-odm-bundle ### -->
+        <env name="MONGODB_URL" value="mongodb://localhost:27017"/>
+        <env name="MONGODB_DB" value="symfony"/>
+        <!-- ###- doctrine/mongodb-odm-bundle ### -->
     </php>
 
     <testsuites>

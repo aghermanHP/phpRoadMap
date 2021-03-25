@@ -1,10 +1,11 @@
+#!/usr/bin/env php7.4
 <?php
 error_reporting(E_ALL);
 
 echo "<h2>TCP/IP Connection</h2>\n";
 
 /* Get the port for the WWW service. */
-$service_port = 15213;
+$service_port = 10000;
 
 /* Get the IP address for the target host. */
 $address = gethostbyname('localhost');
@@ -33,11 +34,12 @@ socket_write($socket, $in, strlen($in));
 echo "OK.\n";
 
 echo "Reading response:\n\n";
-while ($out = socket_read($socket, 2048)) {
+while (1) {
+    $out = socket_read($socket, 2048) or die("Could not read server response\n");
     echo $out;
 }
-$in = readline("give the info for server: ");
-socket_write($socket, $in, strlen($in));
+//$in = readline("give the info for server: ");
+//socket_write($socket, $in, strlen($in));
 
 echo "Closing socket...";
 socket_close($socket);

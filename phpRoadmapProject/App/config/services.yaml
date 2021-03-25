@@ -9,6 +9,8 @@ parameters:
     jobs_directory: '%kernel.project_dir%/public/uploads/jobs'
     jobs_web_directory: '/uploads/jobs'
 
+    env(MONGODB_URL): 'mongodb://127.0.0.1:27017'
+    env(MONGODB_DB): 'jobeet'
 
 services:
     # default configuration for services in *this* file
@@ -47,9 +49,9 @@ services:
     App\Routing\ExtraLoader:
         tags: ['routing.loader']
 
-    App\Service\JobDetailsService:
-        arguments: ['@doctrine.orm.default_entity_manager']
-        lazy: true
+#    App\Service\JobDetailsService:
+#        arguments: ['@doctrine.orm.default_entity_manager']
+#        lazy: true
 
     App\Service\JobRantingService:
         arguments: ['@doctrine.orm.default_entity_manager']
